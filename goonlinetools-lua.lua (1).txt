@@ -183,7 +183,7 @@ if getgenv().Key and keys[getgenv().Key] then
         end
     )
 
-    wait(.1)
+    wait(1)
 
     ----------------------------------------ToogleUi----------------------------------------
     local LonelyHubBtn = Instance.new("ScreenGui")
@@ -890,31 +890,7 @@ if getgenv().Key and keys[getgenv().Key] then
             end
         }
     )
-    local Toggle3 = Tabs.Server:AddToggle("MyToggle", {Title = "Spam Join JobID", Default = false})
-    Toggle:OnChanged(function(Value)
-            _G.Join = Value
-        end
-    )
-    spawn(
-        function()
-            while wait() do
-                if _G.Join then
-                    game:GetService("TeleportService"):TeleportToPlaceInstance(
-                        game.placeId,
-                        _G.Job,
-                        game.Players.LocalPlayer
-                    )
-                end
-            end
-        end
-    )
-    local TeleportService = game:GetService("TeleportService")
-    local HttpService = game:GetService("HttpService")
-    local Players = game:GetService("Players")
-    local LocalPlayer = Players.LocalPlayer
-    local PlaceID = game.PlaceId
-
-    -- Nút Rejoin
+    
     Tabs.Server:AddButton(
         {
             Title = "Rejoin",
@@ -5181,7 +5157,7 @@ if getgenv().Key and keys[getgenv().Key] then
     Tabs.If:AddButton(
         {
             Title = "Discord Server",
-            Description = "We have a community to chat \n and help fix script bug!",
+            Description = "We have a community on discord!",
             Callback = function()
                 setclipboard("https://discord.gg/z2Zne6WeBu")
             end
@@ -5245,147 +5221,6 @@ if getgenv().Key and keys[getgenv().Key] then
     local LocalPlayer = Players.LocalPlayer
     local Camera = game:GetService("Workspace").CurrentCamera
     local RunService = game:GetService("RunService")
-
-    -- Biến trạng thái cho Toggle và Slider
-    local SpeedHackEnabled = false
-    local SpeedValue = 16 -- Tốc độ mặc định
-
-    -- Hàm áp dụng Speed Hack
-    local function applySpeedHack()
-        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
-            local humanoid = LocalPlayer.Character.Humanoid
-            if SpeedHackEnabled then
-                humanoid.WalkSpeed = SpeedValue
-            else
-                humanoid.WalkSpeed = 16 -- Tốc độ mặc định
-            end
-        end
-    end
-
-    -- Áp dụng Speed Hack khi nhân vật tái sinh
-    LocalPlayer.CharacterAdded:Connect(
-        function()
-            wait(0.5) -- Đợi nhân vật tải hoàn toàn
-            applySpeedHack()
-        end
-    )
-
-    -- Áp dụng ngay nếu nhân vật đã tồn tại
-    if LocalPlayer.Character then
-        applySpeedHack()
-    end
-
-    -- Tạo Slider cho Speed
-    local SpeedSlider =
-        Tabs.LP:AddSlider(
-        "SpeedSlider",
-        {
-            Title = "Speed",
-            Description = "Adjust player movement speed",
-            Default = 16,
-            Min = 0,
-            Max = 100,
-            Rounding = 1,
-            Callback = function(Value)
-                SpeedValue = Value
-                print("Speed Slider changed:", Value)
-                if SpeedHackEnabled then
-                    applySpeedHack()
-                end
-            end
-        }
-    )
-
-    SpeedSlider:OnChanged(function(Value)
-            SpeedValue = Value
-            print("Speed Slider changed:", Value)
-            if SpeedHackEnabled then
-                applySpeedHack()
-            end
-        end
-    )
-
-    -- Tạo Toggle cho Speed Hack
-    local ToggleSpeedHack = Tabs.LP:AddToggle("ToggleSpeedHack", {Title = "Speed Hack", Default = false})
-
-    ToggleSpeedHack:OnChanged(function()
-            SpeedHackEnabled = Options.ToggleSpeedHack.Value
-            print("Speed Hack Toggle changed:", SpeedHackEnabled)
-            applySpeedHack()
-        end
-    )
-
-    -- Biến trạng thái cho Toggle và Slider
-    local JumpPowerHackEnabled = false
-    local JumpPowerValue = 50 -- JumpPower mặc định
-
-    -- Hàm áp dụng Jump Power Hack
-    local function applyJumpPowerHack()
-        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
-            local humanoid = LocalPlayer.Character.Humanoid
-            if JumpPowerHackEnabled then
-                humanoid.JumpPower = JumpPowerValue
-                humanoid.UseJumpPower = true -- Đảm bảo sử dụng JumpPower (không phải JumpHeight)
-            else
-                humanoid.JumpPower = 50 -- JumpPower mặc định
-                humanoid.UseJumpPower = true
-            end
-        end
-    end
-
-    -- Áp dụng Jump Power Hack khi nhân vật tái sinh
-    LocalPlayer.CharacterAdded:Connect(
-        function()
-            wait(0.5) -- Đợi nhân vật tải hoàn toàn
-            applyJumpPowerHack()
-        end
-    )
-
-    -- Áp dụng ngay nếu nhân vật đã tồn tại
-    if LocalPlayer.Character then
-        applyJumpPowerHack()
-    end
-
-    -- Tạo Slider cho Jump Power
-    local JumpPowerSlider =
-        Tabs.LP:AddSlider(
-        "JumpPowerSlider",
-        {
-            Title = "Jump Power",
-            Description = "Adjust player jump height",
-            Default = 50,
-            Min = 0,
-            Max = 200,
-            Rounding = 1,
-            Callback = function(Value)
-                JumpPowerValue = Value
-                print("Jump Power Slider changed:", Value)
-                if JumpPowerHackEnabled then
-                    applyJumpPowerHack()
-                end
-            end
-        }
-    )
-
-    JumpPowerSlider:OnChanged(function(Value)
-            JumpPowerValue = Value
-            print("Jump Power Slider changed:", Value)
-            if JumpPowerHackEnabled then
-                applyJumpPowerHack()
-            end
-        end
-    )
-
-    -- Tạo Toggle cho Jump Power Hack
-    local ToggleJumpPowerHack = Tabs.LP:AddToggle("ToggleJumpPowerHack", {Title = "Jump Power Hack", Default = false})
-
-    ToggleJumpPowerHack:OnChanged(function()
-            JumpPowerHackEnabled = Options.ToggleJumpPowerHack.Value
-            print("Jump Power Hack Toggle changed:", JumpPowerHackEnabled)
-            applyJumpPowerHack()
-        end
-    )
-
     ------------------------------------------Music---------------------------------------
     Tabs.Music:AddInput(
         "Sound ID",
@@ -5430,16 +5265,6 @@ if getgenv().Key and keys[getgenv().Key] then
                 end
             end
         }
-    )
-
-    local ToggleRp = Tabs.Music:AddToggle("Repeat", {Title = "Song Repeat", Default = false})
-
-    ToggleRp:OnChanged(function(value)
-            loopEnabled = value
-            if currentSound then
-                currentSound.Looped = loopEnabled
-            end
-        end
     )
 
     Tabs.Music:AddSection("Other Song")
