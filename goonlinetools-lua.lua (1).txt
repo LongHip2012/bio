@@ -2510,7 +2510,6 @@ if getgenv().Key and keys[getgenv().Key] then
     ----------------------------------------AOTR----------------------------------------
     print("Loading AOT:R Script")
     wait(.1)
-    Tabs.Aotr:AddSection("Attack On Titan: Revolution")
 
     Tabs.Titan:AddButton(
         {
@@ -2699,8 +2698,6 @@ if getgenv().Key and keys[getgenv().Key] then
     ----------------------------------------ScrP----------------------------------------
     print("Loading Script Paid Tab")
     wait(.5)
-
-    Tabs.SP:AddSection("Script Paid")
 
     Tabs.SP:AddParagraph(
         {
@@ -5115,7 +5112,7 @@ if getgenv().Key and keys[getgenv().Key] then
     wait(.5)
     print("Loading Info Tab")
     wait(.1)
-    Tabs.If:AddSection("Info")
+    
     Tabs.If:AddParagraph(
         {
             Title = "Lonely Hub",
@@ -5266,8 +5263,6 @@ if getgenv().Key and keys[getgenv().Key] then
             end
         }
     )
-
-    Tabs.Music:AddSection("Other Song")
 
     Tabs.Music:AddParagraph(
         {
