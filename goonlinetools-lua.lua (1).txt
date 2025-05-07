@@ -891,8 +891,7 @@ if getgenv().Key and keys[getgenv().Key] then
         }
     )
     local Toggle3 = Tabs.Server:AddToggle("MyToggle", {Title = "Spam Join JobID", Default = false})
-    Toggle:OnChanged(
-        function(Value)
+    Toggle:OnChanged(function(Value)
             _G.Join = Value
         end
     )
@@ -5297,8 +5296,7 @@ if getgenv().Key and keys[getgenv().Key] then
         }
     )
 
-    SpeedSlider:OnChanged(
-        function(Value)
+    SpeedSlider:OnChanged(function(Value)
             SpeedValue = Value
             print("Speed Slider changed:", Value)
             if SpeedHackEnabled then
@@ -5310,8 +5308,7 @@ if getgenv().Key and keys[getgenv().Key] then
     -- Tạo Toggle cho Speed Hack
     local ToggleSpeedHack = Tabs.LP:AddToggle("ToggleSpeedHack", {Title = "Speed Hack", Default = false})
 
-    ToggleSpeedHack:OnChanged(
-        function()
+    ToggleSpeedHack:OnChanged(function()
             SpeedHackEnabled = Options.ToggleSpeedHack.Value
             print("Speed Hack Toggle changed:", SpeedHackEnabled)
             applySpeedHack()
@@ -5370,8 +5367,7 @@ if getgenv().Key and keys[getgenv().Key] then
         }
     )
 
-    JumpPowerSlider:OnChanged(
-        function(Value)
+    JumpPowerSlider:OnChanged(function(Value)
             JumpPowerValue = Value
             print("Jump Power Slider changed:", Value)
             if JumpPowerHackEnabled then
@@ -5383,8 +5379,7 @@ if getgenv().Key and keys[getgenv().Key] then
     -- Tạo Toggle cho Jump Power Hack
     local ToggleJumpPowerHack = Tabs.LP:AddToggle("ToggleJumpPowerHack", {Title = "Jump Power Hack", Default = false})
 
-    ToggleJumpPowerHack:OnChanged(
-        function()
+    ToggleJumpPowerHack:OnChanged(function()
             JumpPowerHackEnabled = Options.ToggleJumpPowerHack.Value
             print("Jump Power Hack Toggle changed:", JumpPowerHackEnabled)
             applyJumpPowerHack()
@@ -5439,8 +5434,7 @@ if getgenv().Key and keys[getgenv().Key] then
 
     local ToggleRp = Tabs.Music:AddToggle("Repeat", {Title = "Song Repeat", Default = false})
 
-    ToggleRp:OnChanged(
-        function(value)
+    ToggleRp:OnChanged(function(value)
             loopEnabled = value
             if currentSound then
                 currentSound.Looped = loopEnabled
